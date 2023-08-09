@@ -52,11 +52,12 @@ export interface ISession extends Session {
   };
 }
 
-export interface ProjectForm {
+export interface CocktailForm {
   title: string;
   content: string;
   recipe: string;
   description: string;
   image: string;
+  rating: number;
   category: string;
 }

@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -13,9 +13,9 @@ const config: Config = {
       carmin: '#ba0f30',
       lightgray: '#a4a2a2',
       darkgray: '#505050',
-      white: '#ffffff'
-    }
+      white: '#ffffff',
+    },
   },
   plugins: [],
-}
-export default config
+};
+export default config;
