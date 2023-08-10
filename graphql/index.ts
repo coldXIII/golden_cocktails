@@ -1,6 +1,6 @@
 export const createCocktailMutation = `
 	mutation CreateCocktail($input: CocktailCreateInput!) {
-		CocktailCreate(input: $input) {
+		cocktailCreate(input: $input) {
 			cocktail {
 				id
 				title
@@ -19,8 +19,8 @@ export const createCocktailMutation = `
 
 export const updateCocktailMutation = `
 	mutation UpdateCocktail($id: ID!, $input: CocktailUpdateInput!) {
-		CocktailUpdate(by: { id: $id }, input: $input) {
-			Cocktail {
+		cocktailUpdate(by: { id: $id }, input: $input) {
+			cocktail {
 				id
 				title
         content
@@ -38,7 +38,7 @@ export const updateCocktailMutation = `
 
 export const deleteCocktailMutation = `
   mutation DeleteCocktail($id: ID!) {
-    CocktailDelete(by: { id: $id }) {
+    cocktailDelete(by: { id: $id }) {
       deletedId
     }
   }
@@ -59,7 +59,7 @@ export const createUserMutation = `
 
 export const cocktailsQuery = `
   query getCocktails($category: String, $endcursor: String) {
-    CocktailSearch(first: 8, after: $endcursor, filter: {category: {eq: $category}}) {
+    cocktailSearch(first: 8, after: $endcursor, filter: {category: {eq: $category}}) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -87,7 +87,7 @@ export const cocktailsQuery = `
 
 export const getCocktailByIdQuery = `
   query GetCocktailById($id: ID!) {
-    Cocktail(by: { id: $id }) {
+    cocktail(by: { id: $id }) {
       id
       title
       content
@@ -124,7 +124,7 @@ export const getCocktailsOfUserQuery = `
       name
       email
       avatarUrl
-      Cocktails(last: $last) {
+      cocktails(last: $last) {
         edges {
           node {
             id

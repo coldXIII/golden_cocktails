@@ -65,28 +65,23 @@ export const fetchAllCocktails = (
   return makeGraphQLRequest(cocktailsQuery, { category, endcursor });
 };
 
-export const createNewCocktail = async (
+export const createCocktail = async (
   form: CocktailForm,
   creatorId: string,
   token: string
 ) => {
-  const imageUrl = await uploadImage(form.image);
-
-  if (imageUrl.url) {
-    client.setHeader('Authorization', `Bearer ${token}`);
-
-    const variables = {
-      input: {
-        ...form,
-        image: imageUrl.url,
-        createdBy: {
-          link: creatorId,
-        },
+  client.setHeader('Authorization', `Bearer ${token}`);
+  const variables = {
+    input: {
+      ...form,
+      rating: Number(form.rating),
+      createdBy: {
+        link: creatorId,
       },
-    };
+    },
+  };
 
-    return makeGraphQLRequest(createCocktailMutation, variables);
-  }
+  return makeGraphQLRequest(createCocktailMutation, variables);
 };
 
 export const updateCocktail = async (

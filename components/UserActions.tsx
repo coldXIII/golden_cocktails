@@ -11,7 +11,7 @@ const UserActions = ({ session }: { session: ISession }) => {
       {session?.user ? (
         <>
           <Link passHref href='/create'>
-            <span className='mr-4 font-thin uppercase text-golden sm:text-lg'>
+            <span className='mr-4 font-thin uppercase text-darkgray hover:text-golden sm:text-lg'>
               Create Cocktail
             </span>
           </Link>
@@ -32,7 +32,7 @@ const UserActions = ({ session }: { session: ISession }) => {
       ) : (
         <button
           onClick={() => signIn('google')}
-          className='px-4   py-2 text-lg  font-thin uppercase text-golden  hover:text-lightgray'
+          className='px-4   py-2 text-lg  font-thin uppercase text-darkgray hover:text-golden'
         >
           Log In
         </button>
