@@ -27,6 +27,7 @@ export const updateCocktailMutation = `
         recipe
         rating
 				description
+        category
 				createdBy {
 					email
 					name
@@ -58,8 +59,8 @@ export const createUserMutation = `
 `;
 
 export const cocktailsQuery = `
-  query getCocktails($category: String, $endcursor: String) {
-    cocktailSearch(first: 8, after: $endcursor, filter: {category: {eq: $category}}) {
+  query getCocktails($endcursor: String) {
+    cocktailSearch(first: 8, after: $endcursor) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -70,6 +71,7 @@ export const cocktailsQuery = `
         node {
           id
           title
+          content
           rating
           image
           category

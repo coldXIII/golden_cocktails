@@ -23,7 +23,7 @@ const Cocktail = g
     recipe: g.string(),
     description: g.string(),
     image: g.url(),
-    rating: g.int(),
+    rating: g.string(),
     category: g.string().search(),
     createdBy: g.relation(() => User),
   })

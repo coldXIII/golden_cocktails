@@ -31,6 +31,7 @@ const Form = ({ type, session, cocktail }: Props) => {
           description: cocktail.description || '',
           image: cocktail.image || '',
           rating: cocktail.rating || 1,
+          category:cocktail.category || ''
         }
       : {},
     mode: 'onChange',
@@ -88,7 +89,7 @@ const Form = ({ type, session, cocktail }: Props) => {
             <option className='inline-block p-2 text-lightgray' value=''>
               Choose a Category
             </option>
-            {categories.map((category, index) => (
+            {categories.map((category:string, index:number) => (
               <option
                 key={index}
                 className='inline-block p-2 text-darkgray '

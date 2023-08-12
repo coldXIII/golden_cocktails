@@ -56,13 +56,10 @@ const makeGraphQLRequest = async (query: string, variables = {}) => {
   }
 };
 
-export const fetchAllCocktails = (
-  category?: string | null,
-  endcursor?: string | null
-) => {
+export const fetchAllCocktails = async (endcursor?: string | null) => {
   client.setHeader('x-api-key', apiKey);
 
-  return makeGraphQLRequest(cocktailsQuery, { category, endcursor });
+  return makeGraphQLRequest(cocktailsQuery, { endcursor });
 };
 
 export const createCocktail = async (
@@ -89,28 +86,13 @@ export const updateCocktail = async (
   cocktailId: string,
   token: string
 ) => {
-  function isBase64DataURL(value: string) {
-    const base64Regex = /^data:image\/[a-z]+;base64,/;
-    return base64Regex.test(value);
-  }
-
-  let updatedForm = { ...form };
-
-  const isUploadingNewImage = isBase64DataURL(form.image);
-
-  if (isUploadingNewImage) {
-    const imageUrl = await uploadImage(form.image);
-
-    if (imageUrl.url) {
-      updatedForm = { ...updatedForm, image: imageUrl.url };
-    }
-  }
-
   client.setHeader('Authorization', `Bearer ${token}`);
 
   const variables = {
     id: cocktailId,
-    input: updatedForm,
+    input: {
+      ...form
+    },
   };
 
   return makeGraphQLRequest(updateCocktailMutation, variables);

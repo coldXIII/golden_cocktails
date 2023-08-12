@@ -5,4 +5,5 @@ export const categories = [
   'Tequila',
   'Vodka',
   'Rum',
+  'Wine'
 ];

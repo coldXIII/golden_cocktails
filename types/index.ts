@@ -6,7 +6,7 @@ export type FormState = {
   recipe: string;
   description: string;
   image: string;
-  rating: number;
+  rating: string;
   category: string;
 };
 

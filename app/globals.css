@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 .formField {
-  @apply focus:shadow-outline mb-3 w-full appearance-none rounded border border-golden px-3 py-2 leading-tight text-darkgray shadow focus:outline-none;
+  @apply  mb-3 w-full appearance-none rounded border border-golden px-3 py-2 leading-tight text-darkgray shadow focus:outline-none;
 }
 .formButton {
-  @apply focus:shadow-outline rounded border border-golden bg-[#fff] px-6 py-2 font-bold text-golden transition-all hover:border-darkgray hover:text-darkgray  focus:outline-none;
+  @apply  rounded border border-golden bg-[#fff] px-6 py-2 font-bold text-golden transition-all hover:border-darkgray hover:text-darkgray  focus:outline-none;
 }
