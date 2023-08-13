@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { headers } from 'next/headers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,6 +16,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const headersList = headers();
+  const activePath = headersList.get('x-invoke-path') as string;
+  console.log(activePath);
   return (
     <html lang='en'>
       <body className={inter.className}>

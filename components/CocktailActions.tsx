@@ -21,14 +21,15 @@ const Actions = ({
 
     const { token } = await fetchToken();
 
-    try {
-      await deleteCocktail(cocktail.id, token);
-
-      router.push('/');
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsDeleting(false);
+    if (confirm('Sure?')) {
+      try {
+        await deleteCocktail(cocktail.id, token);
+        router.push('/');
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsDeleting(false);
+      }
     }
   };
   return (

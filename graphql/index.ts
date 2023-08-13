@@ -36,6 +36,25 @@ export const updateCocktailMutation = `
 		}
 	}
 `;
+export const updateCocktailRatingMutation = `
+	mutation UpdateCocktail($id: ID!, $input: CocktailUpdateInput!) {
+		cocktailUpdate(by: { id: $id }, input: $input) {
+			cocktail {
+				id
+				title
+        content
+        recipe
+        rating
+				description
+        category
+				createdBy {
+					email
+					name
+				}
+			}
+		}
+	}
+`;
 
 export const deleteCocktailMutation = `
   mutation DeleteCocktail($id: ID!) {
@@ -59,8 +78,8 @@ export const createUserMutation = `
 `;
 
 export const cocktailsQuery = `
-  query getCocktails($endcursor: String) {
-    cocktailSearch(first: 8, after: $endcursor) {
+  query getCocktails($categories: [String!], $endcursor: String) {
+    cocktailSearch(first: 6, after: $endcursor, filter:  {category: {in: $categories}}) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -115,28 +134,6 @@ export const getUserQuery = `
       name
       email
       avatarUrl
-    }
-  }
-`;
-
-export const getCocktailsOfUserQuery = `
-  query getUserCocktails($id: ID!, $last: Int = 4) {
-    user(by: { id: $id }) {
-      id
-      name
-      email
-      avatarUrl
-      cocktails(last: $last) {
-        edges {
-          node {
-            id
-            title
-            rating
-            image
-            category
-          }
-        }
-      }
     }
   }
 `;

@@ -1,13 +1,13 @@
 import { GraphQLClient } from 'graphql-request';
 import { CocktailForm } from '@/types';
-
+import { categoryFilters } from '@/constants';
 import {
   createCocktailMutation,
   createUserMutation,
   deleteCocktailMutation,
   updateCocktailMutation,
+  updateCocktailRatingMutation,
   getCocktailByIdQuery,
-  getCocktailsOfUserQuery,
   getUserQuery,
   cocktailsQuery,
 } from '@/graphql';
@@ -34,20 +34,6 @@ export const fetchToken = async () => {
   }
 };
 
-export const uploadImage = async (imagePath: string) => {
-  try {
-    const response = await fetch(`${serverUrl}/api/upload`, {
-      method: 'POST',
-      body: JSON.stringify({
-        path: imagePath,
-      }),
-    });
-    return response.json();
-  } catch (err) {
-    throw err;
-  }
-};
-
 const makeGraphQLRequest = async (query: string, variables = {}) => {
   try {
     return await client.request(query, variables);
@@ -56,10 +42,15 @@ const makeGraphQLRequest = async (query: string, variables = {}) => {
   }
 };
 
-export const fetchAllCocktails = async (endcursor?: string | null) => {
+export const fetchAllCocktails = async (
+  category?: string | null,
+  endcursor?: string | null
+) => {
   client.setHeader('x-api-key', apiKey);
 
-  return makeGraphQLRequest(cocktailsQuery, { endcursor });
+  const categories = category == null ? categoryFilters : [category];
+
+  return makeGraphQLRequest(cocktailsQuery, { categories, endcursor });
 };
 
 export const createCocktail = async (
@@ -71,7 +62,6 @@ export const createCocktail = async (
   const variables = {
     input: {
       ...form,
-      rating: Number(form.rating),
       createdBy: {
         link: creatorId,
       },
@@ -91,11 +81,29 @@ export const updateCocktail = async (
   const variables = {
     id: cocktailId,
     input: {
-      ...form
+      ...form,
+      rating: form.rating.toString(),
     },
   };
 
   return makeGraphQLRequest(updateCocktailMutation, variables);
+};
+
+export const updateCocktailRating = async (
+  rating: number,
+  cocktailId: string,
+  token: string
+) => {
+  client.setHeader('Authorization', `Bearer ${token}`);
+
+  const variables = {
+    id: cocktailId,
+    input: {
+      rating: rating.toString(),
+    },
+  };
+
+  return makeGraphQLRequest(updateCocktailRatingMutation, variables);
 };
 
 export const deleteCocktail = (id: string, token: string) => {
@@ -120,11 +128,6 @@ export const createUser = (name: string, email: string, avatarUrl: string) => {
   };
 
   return makeGraphQLRequest(createUserMutation, variables);
-};
-
-export const getUserProjects = (id: string, last?: number) => {
-  client.setHeader('x-api-key', apiKey);
-  return makeGraphQLRequest(getCocktailsOfUserQuery, { id, last });
 };
 
 export const getUser = (email: string) => {

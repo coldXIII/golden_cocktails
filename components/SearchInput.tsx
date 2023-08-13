@@ -1,12 +1,12 @@
-'use client'
+'use client';
 import { useRouter } from 'next/navigation';
 import debounce from 'lodash/debounce';
 
 const SearchInput = () => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const handleSearch = debounce((query:string) => {
-    router.push(`/?query=${query}`)
+  const handleSearch = debounce((query: string) => {
+    router.push(`/?query=${query}`);
   });
 
   return (

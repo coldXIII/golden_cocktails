@@ -2,9 +2,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+
 import { CocktailForm, ICocktail, ISession } from '@/types';
 import { updateCocktail, createCocktail, fetchToken } from '@/lib/actions';
-import { categories } from '@/constants';
+import { categoryFilters } from '@/constants';
 import Label from './ui/form/Label';
 import Error from './ui/form/Error';
 
@@ -31,7 +32,7 @@ const Form = ({ type, session, cocktail }: Props) => {
           description: cocktail.description || '',
           image: cocktail.image || '',
           rating: cocktail.rating || 1,
-          category:cocktail.category || ''
+          category: cocktail.category || '',
         }
       : {},
     mode: 'onChange',
@@ -43,11 +44,15 @@ const Form = ({ type, session, cocktail }: Props) => {
     try {
       if (type === 'create') {
         await createCocktail(data, session?.user?.id, token);
-        router.push('/');
+        setTimeout(() => {
+          router.push('/');
+        }, 1000);
       }
       if (type === 'edit') {
         await updateCocktail(data, cocktail?.id as string, token);
-        router.push('/');
+        setTimeout(() => {
+          router.push('/');
+        }, 1000);
       }
     } catch (error) {
       alert(
@@ -89,7 +94,7 @@ const Form = ({ type, session, cocktail }: Props) => {
             <option className='inline-block p-2 text-lightgray' value=''>
               Choose a Category
             </option>
-            {categories.map((category:string, index:number) => (
+            {categoryFilters.map((category: string, index: number) => (
               <option
                 key={index}
                 className='inline-block p-2 text-darkgray '

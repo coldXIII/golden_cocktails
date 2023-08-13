@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import { AiOutlineStar } from 'react-icons/ai';
 import { getCurrentUser } from '@/lib/session';
 import { getCocktailDetails } from '@/lib/actions';
 import { ICocktail } from '@/types';
-import Actions from '@/components/Actions';
+import Actions from '@/components/CocktailActions';
+import Rating from '@/components/Rating';
 
 const Cocktail = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
@@ -22,14 +22,7 @@ const Cocktail = async ({ params: { id } }: { params: { id: string } }) => {
             width={350}
             height={350}
           />
-          <div className='flex w-full items-center justify-center gap-[3px] p-2 text-xl text-golden'>
-            <span className='text-darkgray text-sm'> Rate Cocktail:</span>
-            {[...Array(cocktail?.rating)].map((_, index) => (
-              <button key={index}>
-                <AiOutlineStar />
-              </button>
-            ))}
-          </div>
+          <Rating id={cocktail?.id as string} />
         </div>
         <div className='content flex w-full flex-col items-center justify-center text-center'>
           <h1 className='mb-8 text-3xl font-light uppercase text-darkgray'>

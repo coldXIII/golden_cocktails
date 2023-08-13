@@ -1,9 +1,10 @@
-export const categories = [
+export const categoryFilters = [
   'Whiskey',
   'Bourbon',
   'Gin',
   'Tequila',
   'Vodka',
   'Rum',
-  'Wine'
+  'Wine',
+  'Liquor',
 ];
