@@ -133,7 +133,7 @@ const Form = ({ type, session, cocktail }: Props) => {
           )}
         </div>
         <div className='mb-6'>
-          <Label id='description' title='cocktail description' />
+          <Label id='description' title='cocktail history' />
           <textarea
             className='formField'
             id='description'

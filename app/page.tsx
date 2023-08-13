@@ -1,7 +1,7 @@
 import { fetchAllCocktails } from '@/lib/actions';
 import { ICocktail } from '@/types';
 import Card from '@/components/Card';
-import LoadMore from '@/components/LoadMore';
+import Pagination from '@/components/Pagination';
 import Categories from '@/components/Categories';
 
 type SearchParams = {
@@ -55,7 +55,7 @@ export default async function Home({
           <Card key={node.id} cocktail={node} />
         ))}
       </div>
-      <LoadMore
+      <Pagination
         startCursor={data?.cocktailSearch?.pageInfo?.startCursor}
         endCursor={data?.cocktailSearch?.pageInfo?.endCursor}
         hasPreviousPage={data?.cocktailSearch?.pageInfo?.hasPreviousPage}

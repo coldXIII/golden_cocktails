@@ -6,5 +6,5 @@ export const categoryFilters = [
   'Vodka',
   'Rum',
   'Wine',
-  'Liquor',
+  'Bitter',
 ];

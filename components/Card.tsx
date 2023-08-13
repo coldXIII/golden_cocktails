@@ -3,10 +3,7 @@ import React from 'react';
 import { AiOutlineStar } from 'react-icons/ai';
 import { ICocktail } from '@/types';
 
-type CardProps = Pick<
-  ICocktail,
-  'id' | 'title' | 'image' | 'rating'
->;
+type CardProps = Pick<ICocktail, 'id' | 'title' | 'image' | 'rating'>;
 
 const Card = ({ cocktail }: { cocktail: CardProps }) => {
   return (

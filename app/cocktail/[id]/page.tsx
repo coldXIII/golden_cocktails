@@ -4,6 +4,20 @@ import { getCocktailDetails } from '@/lib/actions';
 import { ICocktail } from '@/types';
 import Actions from '@/components/CocktailActions';
 import Rating from '@/components/Rating';
+import { Metadata } from 'next';
+
+export const generateMetadata = async ({
+  params: { id },
+}: {
+  params: { id: string };
+}): Promise<Metadata> => {
+  const data = (await getCocktailDetails(id)) as { cocktail?: ICocktail };
+  const cocktail = data.cocktail;
+  return {
+    title: cocktail?.title,
+    description: `This is the ${cocktail?.title} page`,
+  };
+};
 
 const Cocktail = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();

@@ -9,7 +9,7 @@ type Props = {
   hasNextPage: boolean;
 };
 
-const LoadMore = ({
+const Pagination = ({
   startCursor,
   endCursor,
   hasPreviousPage,
@@ -35,7 +35,7 @@ const LoadMore = ({
   };
 
   return (
-    <div className='mt-10 flex w-full items-center justify-center gap-5 text-sm text-darkgray'>
+    <div className='mt-10 flex w-full items-center justify-center gap-2 text-sm text-darkgray'>
       {hasPreviousPage && (
         <button
           className='mx-2  border border-golden  px-2 py-1 uppercase text-golden sm:px-4 sm:py-2'
@@ -56,4 +56,4 @@ const LoadMore = ({
   );
 };
 
-export default LoadMore;
+export default Pagination;

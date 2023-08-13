@@ -3,6 +3,12 @@ import { getCurrentUser } from '@/lib/session';
 import { getCocktailDetails } from '@/lib/actions';
 import { redirect } from 'next/navigation';
 import { ICocktail } from '@/types';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Edit Cocktail',
+  description: 'An app to share cocktail recipes',
+};
 
 const Edit = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
