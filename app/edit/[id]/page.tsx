@@ -4,6 +4,7 @@ import { getCocktailDetails } from '@/lib/actions';
 import { redirect } from 'next/navigation';
 import { ICocktail } from '@/types';
 import type { Metadata } from 'next';
+import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
   title: 'Edit Cocktail',
@@ -18,9 +19,12 @@ const Edit = async ({ params: { id } }: { params: { id: string } }) => {
   const data = (await getCocktailDetails(id)) as { cocktail?: ICocktail };
 
   if (!data?.cocktail)
-    return <p className='no-result-text'>Failed to fetch project info</p>;
+    return <p className='text-center text-3xl text-lightgray'>Failed to fetch project info</p>;
 
-  return <Form type='edit' session={session} cocktail={data?.cocktail} />;
+  return (<>
+  <Navbar/>
+  <Form type='edit' session={session} cocktail={data?.cocktail} />
+  </>)
 };
 
 export default Edit;

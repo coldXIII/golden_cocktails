@@ -5,6 +5,7 @@ import { ICocktail } from '@/types';
 import Actions from '@/components/CocktailActions';
 import Rating from '@/components/Rating';
 import { Metadata } from 'next';
+import Navbar from '@/components/Navbar';
 
 export const generateMetadata = async ({
   params: { id },
@@ -27,6 +28,8 @@ const Cocktail = async ({ params: { id } }: { params: { id: string } }) => {
   const segmenter = new Intl.Segmenter('en', { granularity: 'sentence' });
 
   return (
+    <>
+    <Navbar/>
     <div className='flex min-h-[100vh] flex-col items-center justify-center px-4 py-8'>
       <div className='w-full gap-4 p-4 sm:flex'>
         <div className='flex w-full flex-col items-center justify-center sm:w-1/2'>
@@ -75,6 +78,7 @@ const Cocktail = async ({ params: { id } }: { params: { id: string } }) => {
       </div>
       <Actions session={session} cocktail={cocktail!} />
     </div>
+    </>
   );
 };
 
