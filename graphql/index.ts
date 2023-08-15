@@ -36,6 +36,7 @@ export const updateCocktailMutation = `
 		}
 	}
 `;
+
 export const updateCocktailRatingMutation = `
 	mutation UpdateCocktail($id: ID!, $input: CocktailUpdateInput!) {
 		cocktailUpdate(by: { id: $id }, input: $input) {
@@ -134,6 +135,27 @@ export const getUserQuery = `
       name
       email
       avatarUrl
+    }
+  }
+`;
+
+export const getCocktailsOfUserQuery = `
+  query getUserCocktails($id: ID!, $last: Int = 6) {
+    user(by: { id: $id }) {
+      id
+      name
+      email
+      avatarUrl
+      cocktails(last: $last) {
+        edges {
+          node {
+            id
+            title
+            image
+            rating
+          }
+        }
+      }
     }
   }
 `;

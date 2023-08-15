@@ -10,6 +10,7 @@ import {
   getCocktailByIdQuery,
   getUserQuery,
   cocktailsQuery,
+  getCocktailsOfUserQuery,
 } from '@/graphql';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -128,6 +129,11 @@ export const createUser = (name: string, email: string, avatarUrl: string) => {
   };
 
   return makeGraphQLRequest(createUserMutation, variables);
+};
+
+export const getUserCocktails = (id: string, last?: number) => {
+  client.setHeader('x-api-key', apiKey);
+  return makeGraphQLRequest(getCocktailsOfUserQuery, { id, last });
 };
 
 export const getUser = (email: string) => {

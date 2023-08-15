@@ -11,28 +11,32 @@ const UserActions = ({ session }: { session: ISession }) => {
       {session?.user ? (
         <>
           <Link passHref href='/create'>
-            <span className='mr-4 font-thin uppercase text-darkgray hover:text-golden sm:text-lg'>
+            <span className='mr-4 font-light uppercase text-darkgray hover:text-golden sm:text-lg'>
               Create Cocktail
             </span>
           </Link>
           <button
             onClick={() => signOut()}
-            className='px-4  py-2 font-thin uppercase text-carmin sm:text-lg'
+            className='px-4  py-2 font-light uppercase text-carmin sm:text-lg'
           >
             Log Out
           </button>
-          <Image
-            src={session?.user?.image ? session.user.image : '/emptyavatar.jpg'}
-            alt='image'
-            width={50}
-            height={50}
-            className=' hidden h-10  w-10 rounded-full sm:block'
-          />
+          <Link href={`/profile/${session?.user?.id}`}>
+            <Image
+              src={
+                session?.user?.image ? session.user.image : '/emptyavatar.jpg'
+              }
+              alt='image'
+              width={50}
+              height={50}
+              className=' hidden h-10  w-10 rounded-full sm:block'
+            />
+          </Link>
         </>
       ) : (
         <button
           onClick={() => signIn('google')}
-          className='px-4   py-2 text-lg  font-thin uppercase text-darkgray hover:text-golden'
+          className='px-4   py-2 text-lg  font-light uppercase text-darkgray hover:text-golden'
         >
           Log In
         </button>

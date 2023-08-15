@@ -15,10 +15,10 @@ const Create = async () => {
 
   return (
     <>
-    <Navbar/>
-    <Form type='create' session={session} />
+      <Navbar />
+      <Form type='create' session={session} />
     </>
-  )
+  );
 };
 
 export default Create;

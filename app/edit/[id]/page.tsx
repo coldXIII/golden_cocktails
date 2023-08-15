@@ -19,12 +19,18 @@ const Edit = async ({ params: { id } }: { params: { id: string } }) => {
   const data = (await getCocktailDetails(id)) as { cocktail?: ICocktail };
 
   if (!data?.cocktail)
-    return <p className='text-center text-3xl text-lightgray'>Failed to fetch project info</p>;
+    return (
+      <p className='text-center text-3xl text-lightgray'>
+        Failed to fetch project info
+      </p>
+    );
 
-  return (<>
-  <Navbar/>
-  <Form type='edit' session={session} cocktail={data?.cocktail} />
-  </>)
+  return (
+    <>
+      <Navbar />
+      <Form type='edit' session={session} cocktail={data?.cocktail} />
+    </>
+  );
 };
 
 export default Edit;

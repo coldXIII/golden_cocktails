@@ -7,7 +7,6 @@ import Pagination from '@/components/Pagination';
 import Categories from '@/components/Categories';
 
 type SearchParams = {
-  query: string | null;
   category?: string | null;
   endcursor?: string | null;
 };
@@ -44,12 +43,13 @@ export default async function Home({
       <>
         <Intro />
         <Navbar />
-        <section className='flex h-screen flex-col items-center justify-center'>
+        <section className='flex h-screen flex-col items-center justify-start gap-[40vh]'>
           <Categories />
           <p className='text-center text-3xl text-lightgray'>
             No cocktails found...
           </p>
-        </section></>
+        </section>
+      </>
     );
   }
 
@@ -58,7 +58,6 @@ export default async function Home({
       <Intro />
       <Navbar />
       <section className='flex min-h-screen flex-col items-center justify-center p-4'>
-
         <Categories />
         <div className='mx-auto grid w-5/6 grid-cols-1 gap-4 p-2 sm:grid-cols-2 lg:grid-cols-3'>
           {cocktailsToDisplay?.map(({ node }: { node: ICocktail }) => (
@@ -71,6 +70,7 @@ export default async function Home({
           hasPreviousPage={data?.cocktailSearch?.pageInfo?.hasPreviousPage}
           hasNextPage={data?.cocktailSearch?.pageInfo.hasNextPage}
         />
-      </section></>
+      </section>
+    </>
   );
 }

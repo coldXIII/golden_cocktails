@@ -2,12 +2,12 @@ import React from 'react';
 
 const Intro = () => {
   return (
-    <section className=' h-[85vh] sm:h-[87vh] w-full flex '>
-      <div className='w-1/2 h-full hidden md:block'>
-        <img src='intro1.jpg' alt='' className='w-full h-full object-cover' />
+    <section className=' flex h-[85vh] w-full sm:h-[87vh] '>
+      <div className='hidden h-full w-1/2 md:block'>
+        <img src='intro1.jpg' alt='' className='h-full w-full object-cover' />
       </div>
       <div className='w-full md:w-1/2'>
-        <img src='intro2.jpg' alt='' className='w-full h-full object-cover' />
+        <img src='intro2.jpg' alt='' className='h-full w-full object-cover' />
       </div>
     </section>
   );
