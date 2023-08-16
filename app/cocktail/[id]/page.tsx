@@ -2,24 +2,23 @@ import Image from 'next/image';
 import { getCurrentUser } from '@/lib/session';
 import { getCocktailDetails } from '@/lib/actions';
 import { ICocktail } from '@/types';
+// import { Metadata } from 'next';
 import Actions from '@/components/CocktailActions';
 import Rating from '@/components/Rating';
-import { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 
-export const generateMetadata = async ({
-  params: { id },
-}: {
-  params: { id: string };
-}): Promise<Metadata> => {
-  const data = (await getCocktailDetails(id)) as { cocktail?: ICocktail };
-  const cocktail = data.cocktail;
-  return {
-    title: cocktail?.title,
-    description: `This is the ${cocktail?.title} page`,
-  };
-};
+// export const generateMetadata = async ({
+//   params: { id },
+// }: {
+//   params: { id: string };
+// }): Promise<Metadata> => {
+//   const data = (await getCocktailDetails(id)) as { cocktail?: ICocktail };
+//   const cocktail = data.cocktail;
+//   return {
+//     title: cocktail?.title,
+//     description: `This is the ${cocktail?.title} page`,
+//   };
+// };
 
 const Cocktail = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
@@ -29,8 +28,6 @@ const Cocktail = async ({ params: { id } }: { params: { id: string } }) => {
   const segmenter = new Intl.Segmenter('en', { granularity: 'sentence' });
 
   return (
-    <>
-      <Navbar />
       <div className='flex min-h-[100vh] flex-col items-center justify-center px-4 py-8'>
         <div className='w-full gap-4 p-4 sm:flex'>
           <div className='flex w-full flex-col items-center justify-center sm:w-1/2'>
@@ -85,7 +82,6 @@ const Cocktail = async ({ params: { id } }: { params: { id: string } }) => {
         </div>
         <Actions session={session} cocktail={cocktail!} />
       </div>
-    </>
   );
 };
 

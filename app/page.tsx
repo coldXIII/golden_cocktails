@@ -1,7 +1,5 @@
 import { fetchAllCocktails } from '@/lib/actions';
 import { ICocktail } from '@/types';
-import Navbar from '@/components/Navbar';
-import Intro from '@/components/Intro';
 import Card from '@/components/Card';
 import Pagination from '@/components/Pagination';
 import Categories from '@/components/Categories';
@@ -40,26 +38,22 @@ export default async function Home({
 
   if (cocktailsToDisplay.length === 0) {
     return (
-      <>
-        <Intro />
-        <Navbar />
         <section className='flex h-screen flex-col items-center justify-start gap-[40vh]'>
           <Categories />
           <p className='text-center text-3xl text-lightgray'>
             No cocktails found...
           </p>
         </section>
-      </>
     );
   }
 
   return (
-    <>
-      <Intro />
-      <Navbar />
       <section className='flex min-h-screen flex-col items-center justify-center p-4'>
         <Categories />
-        <div className='mx-auto grid w-5/6 grid-cols-1 gap-4 p-2 sm:grid-cols-2 lg:grid-cols-3'>
+        <div
+          className='mx-auto grid w-5/6 grid-cols-1 gap-4 p-2 sm:grid-cols-2 lg:grid-cols-3'
+          id='cocktails'
+        >
           {cocktailsToDisplay?.map(({ node }: { node: ICocktail }) => (
             <Card key={node.id} cocktail={node} />
           ))}
@@ -71,6 +65,5 @@ export default async function Home({
           hasNextPage={data?.cocktailSearch?.pageInfo.hasNextPage}
         />
       </section>
-    </>
   );
 }

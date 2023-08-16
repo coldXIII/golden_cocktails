@@ -34,12 +34,12 @@ const UserActions = ({ session }: { session: ISession }) => {
           </Link>
         </>
       ) : (
-        <button
-          onClick={() => signIn('google')}
-          className='px-4   py-2 text-lg  font-light uppercase text-darkgray hover:text-golden'
-        >
-          Log In
-        </button>
+          <button
+            onClick={() => signIn('google')}
+            className='px-4   py-2 text-lg  font-light uppercase text-darkgray hover:text-golden'
+          >
+            Log In
+          </button>
       )}
     </div>
   );

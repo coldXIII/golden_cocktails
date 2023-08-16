@@ -4,7 +4,6 @@ import { getCocktailDetails } from '@/lib/actions';
 import { redirect } from 'next/navigation';
 import { ICocktail } from '@/types';
 import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
   title: 'Edit Cocktail',
@@ -26,10 +25,7 @@ const Edit = async ({ params: { id } }: { params: { id: string } }) => {
     );
 
   return (
-    <>
-      <Navbar />
       <Form type='edit' session={session} cocktail={data?.cocktail} />
-    </>
   );
 };
 
